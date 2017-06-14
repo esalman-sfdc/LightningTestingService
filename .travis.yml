@@ -21,7 +21,7 @@ before_script:
   - sleep 3 # give xvfb some time to start
   - heroku plugins:install salesforce-lightning-cli
   - export SFDX_DISABLE_ENCRYPTION=true
-  - export SFDX_DOMAIN_RETRY=300
+  - export SFDX_DOMAIN_RETRY=0
   - sfdx plugins:install salesforcedx@pre-release
   - sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile assets/server.key --username $USERNAME --setdefaultdevhubusername
 
