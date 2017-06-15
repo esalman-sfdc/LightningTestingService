@@ -30,6 +30,7 @@ script:
   - lintout=$(heroku lightning:lint lightning-component-tests/main/default/aura/);if [[ $lintout =~ .*problem.*error.*warning ]]; then echo "$lintout"; false; fi  
   - sfdx force:source:push -u travisciorg
   #- sleep 300  
-  - sfdx force:lightning:test:run
+  - sfdx force:lightning:test:run --loglevel debug
+  - cat $HOME/.sfdx/sfdx.log
   #- travis_wait runout=$(sfdx force:lightning:test:run); if [[ $? != 0 ]] || ! [[ $runout =~ Failing[[:blank:]]*0 ]]; then echo "$runout"; false; fi 
   - sfdx force:org:delete -u travisciorg -p
