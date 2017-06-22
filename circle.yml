@@ -3,7 +3,6 @@ machine:
     SFDX_USE_GENERIC_UNIX_KEYCHAIN: true
     export SFDX_DOMAIN_RETRY: 300
 
-dependencies:
   pre:
     - wget -qO- https://toolbelt.heroku.com/install.sh | sh
     - export PATH=/usr/local/heroku/bin:$PATH
