@@ -4,13 +4,6 @@ machine:
     export SFDX_DOMAIN_RETRY: 300
 
   pre:
-    - wget -qO- https://toolbelt.heroku.com/install.sh | sh
-    - export PATH=/usr/local/heroku/bin:$PATH
-    - openssl aes-256-cbc -K $encrypted_64814298f594_key -iv $encrypted_64814298f594_iv -in assets/server.key.enc -out assets/server.key -d  
     - wget -qO- https://developer.salesforce.com/media/salesforce-cli/beta/sfdx-v5.7.4-57b4969-linux-amd64.tar.xz | tar xJf -
     - ./sfdx/install
-    - heroku plugins:install salesforce-lightning-cli
     - sfdx plugins:install salesforcedx@pre-release
-
-test:
-  - lintout=$(heroku lightning:lint lightning-component-tests/main/default/aura/);if [[ $lintout =~ .*problem.*error.*warning ]]; then echo "$lintout"; false; fi
