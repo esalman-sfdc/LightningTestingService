@@ -7,10 +7,12 @@ machine:
     - wget -qO- https://developer.salesforce.com/media/salesforce-cli/beta/sfdx-v5.7.4-57b4969-linux-amd64.tar.xz | tar xJf -
     - ./sfdx/install
     - sfdx plugins:install salesforcedx@pre-release
+    - openssl aes-256-cbc -d -in assets/server.key2.enc -out assets/server.key -k $KEY
 
 test:
-  - sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile assets/server.key --username $USERNAME --setdefaultdevhubusername
-  - sfdx force:org:create -s -f config/project-scratch-def.json -a travisciorg
-  - sfdx force:source:push -u travisciorg
-  - sfdx force:lightning:test:run 
-  - sfdx force:org:delete -u travisciorg -p
+  override:
+    - sfdx force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile assets/server.key --username $USERNAME --setdefaultdevhubusername
+    - sfdx force:org:create -s -f config/project-scratch-def.json -a travisciorg
+    - sfdx force:source:push -u travisciorg
+    - sfdx force:lightning:test:run 
+    - sfdx force:org:delete -u travisciorg -p
