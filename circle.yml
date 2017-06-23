@@ -3,10 +3,9 @@ machine:
     SFDX_AUTOUPDATE_DISABLE: true
     SFDX_USE_GENERIC_UNIX_KEYCHAIN: true
     SFDX_DOMAIN_RETRY: 300
-    URL_SFDX_BINARY: https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
 
   pre:
-    - wget -qO- $URL_SFDX_BINARY | tar xJf -
+    - wget -qO- https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz | tar xJf -
     - ./sfdx/install
     - sfdx plugins:install salesforcedx@pre-release
 
