@@ -7,7 +7,7 @@ machine:
     - wget -qO- https://developer.salesforce.com/media/salesforce-cli/beta/sfdx-v5.7.4-57b4969-linux-amd64.tar.xz | tar xJf -
     - ./sfdx/install
     - sfdx plugins:install salesforcedx@pre-release
-    - openssl aes-256-cbc -d -in assets/server.key2.enc -out assets/server.key -k $KEY
+    - openssl -aes-256-cbc -d -in assets/server.key2.enc -out assets/server.key -k $KEY
 
 test:
   override:
